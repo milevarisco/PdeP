@@ -38,3 +38,5 @@ nombreUnion :: String -> String
 nombreUnion nombre
     | esVocal (last nombre) == False = nombre ++ "uro"
     | otherwise = reverse (dropWhile esVocal (reverse nombre)) ++ "uro"
+    
+saludo = "hola todos"
