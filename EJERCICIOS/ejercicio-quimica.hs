@@ -22,6 +22,8 @@ oxigeno = Elemento "Oxigeno" 8 "no metal"
 agua :: Sustancia
 agua = Compuesto "Agua" "no metal" [Componente "Hidrogeno" 2, Componente "Oxigeno" 1]
 
+cOxigeno = Componente "Oxigeno" 3
+cHidrogeno = Componente "Hidrogeno" 4
 --PUNTO 2
 
 -- Ahora la función puede recibir una Sustancia (que podrá ser Elemento o Compuesto)
@@ -34,6 +36,14 @@ conduceBien _ _ = False
 
 --PUNTO 3
 
+esVocal :: Char -> Bool
+esVocal 'a' = True  
+esVocal 'e' = True
+esVocal 'i' = True
+esVocal 'o' = True
+esVocal 'u' = True
+esVocal _ = False 
+
 nombreUnion :: String -> String
 nombreUnion nombre
     | esVocal (last nombre) == False = nombre ++ "uro"
@@ -42,3 +52,14 @@ nombreUnion nombre
 -- PUNTO 4
 combinar :: String -> String -> String
 combinar nombre1 nombre2 = nombreUnion nombre1 ++ " de " ++ nombre2
+
+--PUNTO 5
+mezclar :: [Componente] -> [Componente] -> Sustancia
+mezclar c1 c2 = Compuesto (foldl1 combinar $ nombresLista (c1 ++ c2)) "no metal" (c1 ++ c2)
+
+nombreComponente :: Componente -> String
+nombreComponente (Componente nombre _) = nombre
+
+nombresLista :: [Componente] -> [String]
+nombresLista lista = map nombreComponente lista
+
