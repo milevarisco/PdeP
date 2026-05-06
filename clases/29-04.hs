@@ -45,14 +45,14 @@ concatenarListar (xs : xss) = xs concatenar concatenarListar xss
 
 -- funcion generica para estos casos
 
-sumarListas' lista = generico (+) 0 lista
-productoLista' lista = generico (*) 1 lista
-y' lista = generico (&&) True lista
-o' lista = generico (||) False lista
-concatenarListar' lista = generico (++) [] lista
+sumarListas' lista = plegar (+) 0 lista
+productoLista' lista = plegar (*) 1 lista
+y' lista = plegar (&&) True lista
+o' lista = plegar (||) False lista
+concatenarListar' lista = plegar (++) [] lista
 
-generico operador casoBase [] = casoBase  --foldr
-generico operador casoBase (x:xs) = operador x (generico operador casoBase xs)
+plegar operador casoBase [] = casoBase  --foldr
+plegar operador casoBase (x:xs) = operador x (plegar operador casoBase xs)
 
 -- tipado de foldr
 foldr :: ( b -> a -> a ) -> a -> [b] -> a
