@@ -1,72 +1,127 @@
+--------------------------------------------------------------------------------
+-- CLASE 29-04: Recursividad, Listas, Pattern Matching y Funciones de Orden Superior
+--------------------------------------------------------------------------------
+
+-- =============================================================================
+-- 1. RECURSIVIDAD
+-- =============================================================================
+-- Una función recursiva es aquella que se llama a sí misma para resolver 
+-- un problema dividiéndolo en subproblemas más pequeños. Siempre necesita un
+-- "caso base" para cortar la recursividad.
+
+-- Usando guardas:
 factorial :: Int -> Int 
 factorial n
-    | n== 0 = 1
-    | otherwise = n * factorial(n-1)
+    | n == 0    = 1                               -- Caso Base
+    | otherwise = n * factorial (n - 1)           -- Caso Recursivo
 
+-- Usando Pattern Matching (más idiomático y claro):
 factorial' :: Int -> Int
-factorial' 0 = 1 -- Caso Base
-factorial' n = n * n factorial'(n-1) -- Caso Recursivo
+factorial' 0 = 1                                  -- Caso Base
+factorial' n = n * factorial' (n - 1)             -- Caso Recursivo
 
--- Ahora que vimos data podemos ver la definicion de lista
 
-data [a] = [] | a : [a]
+-- =============================================================================
+-- 2. DEFINICIÓN DE LISTAS
+-- =============================================================================
+-- Ahora que vimos 'data', podemos entender cómo se definen las listas.
+-- Internamente, una lista se define de forma recursiva como:
+--
+--    data [a] = [] | a : [a]
+--
+-- Es decir, una lista de tipo 'a' puede ser:
+--   1. []       -> Una lista vacía.
+--   2. a : [a]  -> Un elemento de tipo 'a' pegado (cons) a una lista de tipo 'a'.
 
--- definicion de head y tail
-
+-- Obtener el primer elemento (head):
+cabeza :: [a] -> a
 cabeza (x : xs) = x
+
+-- Obtener el resto de la lista (tail):
+cola :: [a] -> [a]
 cola (x : xs) = xs
 
--- definicion de funciones de listas con pattern matching y recursividad
 
-tamaño [] = 0                --length
-tamaño (x:xs) = 1 +  tamaño xs
+-- =============================================================================
+-- 3. FUNCIONES DE LISTAS (Usando Pattern Matching y Recursividad)
+-- =============================================================================
+-- Al trabajar con listas, el caso base suele ser la lista vacía ([]), 
+-- y el caso recursivo divide la lista en cabeza (x) y cola (xs).
 
-revertir [] = []                   --reverse
+tamaño :: [a] -> Int                -- Equivalente a 'length'
+tamaño []     = 0                   
+tamaño (x:xs) = 1 + tamaño xs
+
+revertir :: [a] -> [a]              -- Equivalente a 'reverse'
+revertir []     = []                
 revertir (x:xs) = revertir xs ++ [x]
 
-concatenar [] lista2 = lista2               -- (++)
-concatenar (x:xs) lista2 = x : (xs ++ lista2)
+concatenar :: [a] -> [a] -> [a]     -- Equivalente a '(++)'
+concatenar []     lista2 = lista2   
+concatenar (x:xs) lista2 = x : concatenar xs lista2
 
-sumarLista [] = 0                    -- sum
+sumarLista :: Num a => [a] -> a     -- Equivalente a 'sum'
+sumarLista []     = 0               
 sumarLista (x:xs) = x + sumarLista xs
 
-productoLista [] = 1                       --product
+productoLista :: Num a => [a] -> a  -- Equivalente a 'product'
+productoLista []     = 1            
 productoLista (x:xs) = x * productoLista xs
 
-y [] = True         --and
+y :: [Bool] -> Bool                 -- Equivalente a 'and'
+y []     = True                     
 y (x:xs) = x && y xs
 
-o [] = False        --or
+o :: [Bool] -> Bool                 -- Equivalente a 'or'
+o []     = False                    
 o (x:xs) = x || o xs
 
-concatenarListar [] = []                                 --concat
-concatenarListar (xs : xss) = xs concatenar concatenarListar xss
+concatenarListas :: [[a]] -> [a]    -- Equivalente a 'concat'
+concatenarListas []         = []    
+concatenarListas (xs : xss) = xs `concatenar` concatenarListas xss
 
 
--- funcion generica para estos casos
+-- =============================================================================
+-- 4. FUNCIONES DE ORDEN SUPERIOR (Plegado, Mapeo y Filtrado)
+-- =============================================================================
 
-sumarListas' lista = plegar (+) 0 lista
-productoLista' lista = plegar (*) 1 lista
-y' lista = plegar (&&) True lista
-o' lista = plegar (||) False lista
-concatenarListar' lista = plegar (++) [] lista
+-- A) PLEGADO (foldr / foldl)
+-- Notamos que todas las funciones anteriores siguen el mismo patrón:
+-- toman un caso base y aplican una operación entre 'x' y la recursión en 'xs'.
+-- Podemos abstraer ese patrón en una función de orden superior: 'plegar' (foldr).
 
-plegar operador casoBase [] = casoBase  --foldr
+plegar :: (a -> b -> b) -> b -> [a] -> b  -- Equivalente a 'foldr'
+plegar operador casoBase []     = casoBase  
 plegar operador casoBase (x:xs) = operador x (plegar operador casoBase xs)
 
--- tipado de foldr
-foldr :: ( b -> a -> a ) -> a -> [b] -> a
-foldl :: ( a -> b -> a ) -> a -> [b] -> a
+-- ¡Ahora podemos redefinir todas las funciones anteriores en una sola línea!
+sumarListas'      = plegar (+) 0
+productoLista'    = plegar (*) 1
+y'                = plegar (&&) True
+o'                = plegar (||) False
+concatenarListas' = plegar (++) []
 
--- length con foldr
-tamaño' lista = foldr (\x r -> 1 + r) 0 lista 
+-- Implementación de 'length' con foldr:
+-- En cada paso, descartamos el elemento (\_ ...) y sumamos 1 al resultado recursivo ('r').
+tamaño' :: [a] -> Int
+tamaño' = plegar (\_ r -> 1 + r) 0 
+
+-- Tipos de las funciones fold de la biblioteca estándar de Haskell:
+-- foldr :: (a -> b -> b) -> b -> [a] -> b  (Asocia por derecha)
+-- foldl :: (b -> a -> b) -> b -> [a] -> b  (Asocia por izquierda)
 
 
+-- B) MAPEO (map)
+-- Aplica una función 'f' a cada elemento de la lista.
+mapear :: (a -> b) -> [a] -> [b]    -- Equivalente a 'map'
+mapear f []     = []               
+mapear f (x:xs) = f x : mapear f xs
 
-mapear f [] = []               -- map
-mapear f (x:xs) = f x : map f xs
 
-filtrar condicion [] = []                  -- filter
+-- C) FILTRADO (filter)
+-- Retorna una nueva lista sólo con los elementos que cumplen la 'condicion'.
+filtrar :: (a -> Bool) -> [a] -> [a] -- Equivalente a 'filter'
+filtrar condicion [] = []                  
 filtrar condicion (x:xs)
     | condicion x = x : filtrar condicion xs
-    | otherwise = filtrar condicion xs
+    | otherwise   = filtrar condicion xs
