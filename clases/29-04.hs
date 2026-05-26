@@ -107,8 +107,51 @@ tamaño' :: [a] -> Int
 tamaño' = plegar (\_ r -> 1 + r) 0 
 
 -- Tipos de las funciones fold de la biblioteca estándar de Haskell:
--- foldr :: (a -> b -> b) -> b -> [a] -> b  (Asocia por derecha)
--- foldl :: (b -> a -> b) -> b -> [a] -> b  (Asocia por izquierda)
+-- foldr :: (a -> b -> b) -> b -> [a] -> b  (Asocia por derecha / Fold Right)
+-- foldl :: (b -> a -> b) -> b -> [a] -> b  (Asocia por izquierda / Fold Left)
+
+{- 
+=============================================================================
+DIFERENCIAS DETALLADAS ENTRE foldr Y foldl (Para PdeP)
+=============================================================================
+
+1. DIRECCIÓN DE ASOCIACIÓN (Agrupación de paréntesis)
+   - foldr (Right): Empieza a operar desde el último elemento (derecha) hacia el primero.
+     Ejemplo: foldr (-) 0 [1, 2, 3] 
+              => 1 - (2 - (3 - 0)) 
+              => 1 - (2 - 3) 
+              => 1 - (-1) 
+              => 2
+
+   - foldl (Left): Empieza a operar desde el primer elemento (izquierda) usando la semilla.
+     Ejemplo: foldl (-) 0 [1, 2, 3] 
+              => ((0 - 1) - 2) - 3 
+              => (-1 - 2) - 3 
+              => -3 - 3 
+              => -6
+
+2. FIRMA DE LA FUNCIÓN DE COMBINACIÓN
+   - foldr: El operador/función toma el ELEMENTO de la lista primero, y el ACUMULADOR después:
+            f :: (Elemento -> Acumulador -> Acumulador)
+   - foldl: El operador/función toma el ACUMULADOR primero, y el ELEMENTO de la lista después:
+            f :: (Acumulador -> Elemento -> Acumulador)
+
+3. COMPORTAMIENTO CON LISTAS INFINITAS (Lazy Evaluation)
+   - foldr puede trabajar con listas infinitas si el operador es "perezoso" (lazy) en su segundo
+     argumento (el acumulador). Esto se debe a que puede "cortar" la evaluación sin mirar el resto.
+     Ejemplo: foldr (||) False (True : repetidosTrue) => True || (foldr (||) False repetidosTrue)
+              Como (True || _) es siempre True, Haskell no evalúa el resto de la lista infinita.
+   - foldl NO puede trabajar con listas infinitas. Al asociar por izquierda, necesita llegar al final
+     de la lista para poder empezar a resolver el paréntesis más externo. Con listas infinitas,
+     entra en un bucle infinito (o Stack Overflow).
+
+4. VARIANTES ÚTILES:
+   - foldr1 / foldl1: Variantes para cuando NO tenemos un caso base (semilla) lógico.
+     Toman el primer elemento de la lista (o el último, según corresponda) como semilla inicial.
+     *¡Ojo!* Explotan con listas vacías (error: Empty list).
+     Ejemplo: foldl1 max [3, 5, 2] => 5
+
+-}
 
 
 -- B) MAPEO (map)
