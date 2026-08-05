@@ -172,8 +172,27 @@ promedio(Alumno, Cursada, Promedio) :-
 % 2. La Negación (not o \+):
 %    Funciona por "Negación por Falla". No genera datos, solo sirve como filtro.
 %    Si entra una variable libre, el not fallará o dará resultados incorrectos.
+% 3. forall y findall:
+%    - forall/2 (Para todo):
+%      * Sintaxis: forall(Antecedente/Generador, Consecuente/Condicion)
+%      * Significa: "Para todos los elementos que cumplen la primera parte, se tiene que cumplir la segunda".
+%      * Recibe dos consultas. Al menos un parametro debe pasarse libre para que funcione.
+%      * Al igual que el 'not', NO es inversible para variables que no estén ligadas antes del forall. Por eso requiere un generador previo.
+%      * Ejemplo: Queremos saber si todas las materias que da un profesor son fáciles.
+%        daSoloMateriasFaciles(Profesor) :-
+%          profesor(Profesor, _, _), % GENERADOR para Profesor
+%          forall(profesor(Profesor, Materia, _), esFacil(Materia)).
 %
-% ¿Cómo se soluciona? (Uso de GENERADORES):
+%    - findall/3 (Encontrar todos):
+%      * Sintaxis: findall(QuéQueremosGuardar, Condición, ListaDestino)
+%      * Significa: "Busca todas las soluciones que cumplen la Condición, extrae el valor indicado en QuéQueremosGuardar, y ponelos en ListaDestino".
+%      * OJO: findall SIEMPRE da verdadero (True). Si nadie cumple la condición, te va a devolver la lista vacía [].
+%      * Ejemplo: Queremos saber qué materias da un profesor en una lista.
+%        materiasQueDa(Profesor, Materias) :-
+%          profesor(Profesor, _, _), % GENERADOR para Profesor
+%          findall(Materia, profesor(Profesor, Materia, _), Materias).
+%
+% ¿Cómo se soluciona el problema de inversibilidad? (Uso de GENERADORES):
 % Un GENERADOR es un predicado simple (hecho de la base de datos o relación simple
 % como 'cursada/4', 'materia/2', 'profesor/3') que asocia variables libres a
 % individuos existentes del universo.
@@ -216,3 +235,56 @@ jodido(Profesor):-
 %   - El paréntesis de afuera es del 'not(...)'.
 %   - El paréntesis de adentro '(Condición1, Condición2)' agrupa las condiciones en un solo bloque. Si pusiéramos 'not(Condición1, Condición2)' sin el doble paréntesis, Prolog tiraría error porque pensaría que le estamos pasando dos argumentos al 'not' (y el not solo acepta uno).
 % - Lógica de De Morgan: not((A, B)) es equivalente a decir "No (A y B)", lo cual significa que la regla se cumple si falla A, o si falla B, o si fallan ambos.
+
+%==============
+% LISTAS
+%============
+% En Prolog, las listas son colecciones ordenadas de elementos.
+% Se representan entre corchetes y se separan por comas.
+%
+% Estructuras Básicas:
+% []             -> Lista vacía.
+% [X]            -> Lista con un solo elemento (X).
+% [X, Y]         -> Lista con exactamente dos elementos (X e Y).
+% [Cabeza | Cola]-> Sintaxis del "Cons" (o constructor de listas / pipe |).
+%                   * Cabeza (Head): Es el PRIMER elemento de la lista (un individuo, átomo, número, etc.).
+%                   * Cola (Tail): Es una LISTA que contiene el RESTO de los elementos (siempre es una lista, incluso si está vacía).
+%
+% Ejemplos de unificación (cómo empareja Prolog):
+% 1) [1, 2, 3] = [Cabeza | Cola]  --> Cabeza = 1, Cola = [2, 3]
+% 2) [1] = [Cabeza | Cola]        --> Cabeza = 1, Cola = []
+% 3) [] = [Cabeza | Cola]         --> Falla (la lista vacía no tiene cabeza ni cola).
+% 4) [1, 2, 3] = [X, Y | Xs]      --> X = 1, Y = 2, Xs = [3] (Xs es la cola/resto de la lista).
+%
+% Predicados Comunes de Listas (incorporados en Prolog):
+% ====================================================
+% 1. member/2 (Pertenencia y Generación):
+%    - Relaciona un elemento con una lista si el elemento pertenece a ella.
+%    - ¡Funciona como GENERADOR si la variable del elemento está libre!
+%    - Ej: member(x, [a, b, x, y]) -> true.
+%    - Ej: member(X, [1, 2, 3]) -> Genera X = 1; X = 2; X = 3.
+%
+% 2. length/2 (Longitud):
+%    - Relaciona una lista con su cantidad de elementos.
+%    - Ej: length([a, b, c], N) -> N = 3.
+%
+% 3. sum_list/2 (Suma):
+%    - Suma todos los elementos numéricos de una lista.
+%    - Ej: sum_list([10, 20, 5], Total) -> Total = 35.
+%
+% 4. append/3 (Concatenación y División):
+%    - Relaciona tres listas: append(Lista1, Lista2, ListaResultado).
+%    - Sirve tanto para unir: append([1, 2], [3], X) -> X = [1, 2, 3].
+%    - Como para dividir/desarmar: append(Izquierda, Derecha, [1, 2, 3]) -> Genera todas las particiones posibles.
+%
+% Recursividad con Listas:
+% ========================
+% Cuando definimos predicados recursivos propios sobre listas, solemos seguir esta estructura:
+% 1. Caso Base: Define qué pasa cuando la lista está vacía (`[]`) o tiene un solo elemento (`[_]`).
+% 2. Caso Recursivo: Trabaja con la `Cabeza` y hace la llamada recursiva pasándole la `Cola`.
+%
+% Ejemplo: contarElementos/2 (Equivalente manual de length/2)
+% contarElementos([], 0).  % Caso base: la lista vacía tiene 0 elementos.
+% contarElementos([_ | Cola], Cantidad) :-
+%   contarElementos(Cola, CantidadCola),
+%   Cantidad is CantidadCola + 1.  % Caso recursivo: sumamos 1 por cada cabeza que sacamos.
