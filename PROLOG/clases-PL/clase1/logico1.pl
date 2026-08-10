@@ -76,7 +76,6 @@ masDeUnCursoDe(Profesor, Materia) :-
   profesor(Profesor, Materia, Curso1),
   Curso1 \= Curso2.
 
-%queremos saber que profesores dan un solo curso para c/materia
 % queremos saber qué profesores dan un solo curso para cada materia.
 %
 % Explicación de la variable anónima '_' dentro del 'not':
