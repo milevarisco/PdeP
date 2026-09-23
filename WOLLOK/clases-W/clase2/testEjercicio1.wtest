@@ -1,0 +1,21 @@
+import clases-W.clase2.ejercicio1.sinOferta
+import clases-W.clase2.ejercicio1.desarrollador
+import clases-W.clase2.ejercicio1.nulo
+import clases-W.clase2.ejercicio1.pepe
+
+
+
+describe "sueldo de pepe" {
+  test "cuando pepe es desarrollador y tiene bono presentismo y bono resultado nulo, sin antiguedad y sin faltas" {
+    // 1. DADO (Arrange): Configuración del escenario e inicialización de objetos
+    pepe.categoria(desarrollador)
+    pepe.bonoPresentismo(nulo)
+    pepe.bonoResultado(sinOferta)
+    pepe.aniosAntiguedad(0)
+    pepe.cantidadFaltas(0)
+
+    // 2. CUANDO (Act) & 3. ESPERO (Assert): Se consulta el sueldo y se verifica el resultado
+    // assert.equals(esperado, obtenido)
+    assert.equals(1000, pepe.sueldo())
+  }
+}

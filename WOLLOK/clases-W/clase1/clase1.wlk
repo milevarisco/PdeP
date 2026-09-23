@@ -22,7 +22,13 @@
  * 5. INTERFAZ:
  *    Es el conjunto de todos los MENSAJES que un objeto entiende (sabe responder).
  *    En 'estudiante', su interfaz son: energia(), saludar(alguien) y tomarMates().
- *
+ * 
+ * 6. POLIMORFISMO:
+ *    - Ocurre cuando un objeto puede tratar indistintamente a distintos objetos.
+ *    - Para que dos o más objetos sean polimórficos respecto a un tercero, deben 
+ *      compartir una interfaz común (responder a los mismos mensajes).
+ *    - Ejemplo: 'estudiante' trata polimórficamente a 'termoLumilagro' y 'termoCEIT',
+ *      ya que ambos entienden el mensaje 'servirAgua(unaCantidad)'.
  * ============================================================================
  */
 

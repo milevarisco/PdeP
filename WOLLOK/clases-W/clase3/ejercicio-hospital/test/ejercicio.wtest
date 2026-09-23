@@ -1,0 +1,61 @@
+import clases-W.clase3.ejercicio-hospital.src.ejercicio.frank
+import clases-W.clase3.ejercicio-hospital.src.ejercicio.logan
+import clases-W.clase3.ejercicio-hospital.src.ejercicio.malaria800
+import clases-W.clase3.ejercicio-hospital.src.ejercicio.malaria500
+import clases-W.clase3.ejercicio-hospital.src.ejercicio.otitis100
+import clases-W.clase3.ejercicio-hospital.src.ejercicio.lupus10000
+
+describe "Dr Casa - Temporada 1" {
+  test "frank contrae una malaria de 800 celulas" {
+    frank.contrae(malaria800)
+    assert.that(frank.estaEnfermoDe(malaria800))
+    assert.equals(36.8, frank.temperatura())
+  }
+
+  test "la malaria de 500 se reproduce" {
+    assert.equals(500, malaria500.celulasAmenazadas())
+    malaria500.reproducite()
+    assert.equals(1000, malaria500.celulasAmenazadas())
+  }
+
+  test "logan vive un dia" {
+    logan.contrae(malaria500)
+    logan.contrae(otitis100)
+    logan.contrae(lupus10000)
+
+    logan.viviUnDia()
+
+    assert.equals(36.6, logan.temperatura())
+    assert.equals(0, logan.celulasAfectadasPorCelulasAgresivas())
+  }
+
+test "logan vive un dia y la enfermedad que mas le afecta es el lupus 10000" {
+    logan.contrae(malaria500)
+    logan.contrae(otitis100)
+    logan.contrae(lupus10000)
+
+    logan.viviUnDia()
+    assert.equals(lupus10000, logan.enfermedadMasAfectante())
+    assert.notThat(logan.quedaEnComa())
+}
+
+test "logan vive 31 dias y no queda en coma" {
+    logan.contrae(malaria500)
+    logan.contrae(otitis100)
+    logan.contrae(lupus10000)
+
+    logan.vivirNDias(31)
+    assert.equals(lupus10000, logan.enfermedadMasAfectante())
+    assert.that(logan.quedaEnComa())
+}
+
+test "logan vive 31 dias y tiene 10000 celulas amenazadas" {
+    logan.contrae(malaria500)
+    logan.contrae(otitis100)
+    logan.contrae(lupus10000)
+
+    logan.vivirNDias(31)
+
+    assert.equals(10000, logan.celulasAfectadasPorEnfermedad())
+}
+}
