@@ -255,5 +255,15 @@
   - La Persona apunta con UNA SOLA flecha a la Interfaz (Persona -> * Enfermedad).
   - Las clases concretas (EnfermedadInfecciosa y EnfermedadesAutoInmune) apuntan 
     hacia la Interfaz indicando que ambas implementan ese contrato de mensajes.
+
+  TIPOS DE FLECHAS EN EL DIAGRAMA:
+  1) Flecha común (->): 
+     Significa "TIENE UN" / "CONOCE A" (Asociación/Atributo).
+     Ejemplo: Persona -> * Enfermedad (La persona TIENE una colección de enfermedades).
+
+  2) Flecha con triángulo / punta rellena o hueca (—|>): 
+     Significa "ES UN" / "ES UN TIPO DE" (Herencia / Subtipado / Implementación de Interfaz).
+     Va desde la clase concreta apuntando HACIA la interfaz o súperclase.
+     Ejemplo: EnfermedadInfecciosa —|> Enfermedad (La enfermedad infecciosa ES UN TIPO DE Enfermedad).
 ====================================================================
 */
