@@ -246,9 +246,14 @@
     "A conoce a muchos B". Representa una colección de referencias.
     Ejemplo: Persona -> * Enfermedad (la persona tiene una lista/set de enfermedades)
 
-  Polimorfismo en el Diagrama:
-  Cuando varias clases (ej: EnfermedadInfecciosa y EnfermedadesAutoInmune) 
-  entienden el mismo conjunto de mensajes (afectarA, esAgresiva, celulasAmenazadas), 
-  se representa visualmente que ambas cumplen con la misma interfaz o súperclase.
+  Polimorfismo en el Diagrama e INTERFACES:
+  - Una INTERFAZ es el conjunto de mensajes (contrato) que un objeto entiende.
+  - Sacar múltiples flechas desde un atributo (ej. Persona -> EnfermedadInfecciosa 
+    y Persona -> EnfermedadesAutoInmune) ensucia el diagrama.
+  - Para simplificarlo y comunicar el POLIMORFISMO, dibujamos una caja general 
+    arriba llamada INTERFAZ (ej: «interface» Enfermedad o IEnfermedad).
+  - La Persona apunta con UNA SOLA flecha a la Interfaz (Persona -> * Enfermedad).
+  - Las clases concretas (EnfermedadInfecciosa y EnfermedadesAutoInmune) apuntan 
+    hacia la Interfaz indicando que ambas implementan ese contrato de mensajes.
 ====================================================================
 */
