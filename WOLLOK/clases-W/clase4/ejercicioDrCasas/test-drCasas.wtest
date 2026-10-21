@@ -8,6 +8,8 @@ import clases-W.clase4.ejercicioDrCasas.src.enfermedades.lupus200
 import clases-W.clase4.ejercicioDrCasas.src.enfermedades.lupus10000
 import clases-W.clase4.ejercicioDrCasas.src.medico.cameron
 import clases-W.clase4.ejercicioDrCasas.src.medico.bilardo
+import clases-W.clase3.ejercicio-hospital.src.ejercicio.EnfermedadInfecciosa
+import clases-W.clase4.ejercicioDrCasas.src.persona.Persona
 
 describe "Dr Casa - Temporada 1" {
     test "frank contraer una malaria de 800 células" {
@@ -111,4 +113,8 @@ describe "Dr Casa - Temporada 2" {
 
         assert.equals(#{malaria800}, logan.enfermedades())
     }
+}
+
+describe "Dr Casa - Temporada 3" {
+    
 }

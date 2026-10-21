@@ -131,7 +131,7 @@
 
 
 ====================================================================
-3. REDEFINICIÓN DE MÉTODOS CON override
+3. REDEFINICIÓN DE MÉTODOS CON OVERRIDE
 ====================================================================
 
   ¿Qué es override?

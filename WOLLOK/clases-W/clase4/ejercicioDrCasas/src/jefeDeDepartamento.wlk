@@ -1,5 +1,3 @@
-import clases-W.clase4.ejercicioDrCasas.src.medico.Medico
-
 class JefeDeDepartamento inherits Medico {
     const subordinados = #{}
 
