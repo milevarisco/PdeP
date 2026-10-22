@@ -1,0 +1,212 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+
+    {
+      "id": "jugador-box",
+      "type": "rectangle",
+      "x": 100, "y": 200, "width": 340, "height": 210,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#d0ebff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "seed": 1001, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "jugador-header",
+      "type": "rectangle",
+      "x": 100, "y": 200, "width": 340, "height": 40,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#1971c2",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "seed": 1002, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "jugador-title",
+      "type": "text",
+      "x": 108, "y": 208, "width": 324, "height": 25,
+      "angle": 0, "strokeColor": "#ffffff", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "seed": 1003, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "text": "Jugador", "fontSize": 18, "fontFamily": 1,
+      "textAlign": "center", "verticalAlign": "middle", "baseline": 18, "containerId": null,
+      "originalText": "Jugador", "lineHeight": 1.25
+    },
+    {
+      "id": "jugador-attrs",
+      "type": "text",
+      "x": 110, "y": 248, "width": 320, "height": 155,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "seed": 1004, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "text": "- skill: Number\n- peso: Number\n- escoba: Escoba\n──────────────────────────\n+ nivelManejo(): Number\n+ velocidad(): Number",
+      "fontSize": 13, "fontFamily": 3,
+      "textAlign": "left", "verticalAlign": "top", "baseline": 13, "containerId": null,
+      "originalText": "- skill: Number\n- peso: Number\n- escoba: Escoba\n──────────────────────────\n+ nivelManejo(): Number\n+ velocidad(): Number",
+      "lineHeight": 1.3
+    },
+
+    {
+      "id": "nimbus-box",
+      "type": "rectangle",
+      "x": 600, "y": 150, "width": 340, "height": 230,
+      "angle": 0, "strokeColor": "#2f9e44", "backgroundColor": "#d3f9d8",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "seed": 2001, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "nimbus-header",
+      "type": "rectangle",
+      "x": 600, "y": 150, "width": 340, "height": 40,
+      "angle": 0, "strokeColor": "#2f9e44", "backgroundColor": "#2f9e44",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "seed": 2002, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "nimbus-title",
+      "type": "text",
+      "x": 608, "y": 158, "width": 324, "height": 25,
+      "angle": 0, "strokeColor": "#ffffff", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "seed": 2003, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "text": "Nimbus", "fontSize": 18, "fontFamily": 1,
+      "textAlign": "center", "verticalAlign": "middle", "baseline": 18, "containerId": null,
+      "originalText": "Nimbus", "lineHeight": 1.25
+    },
+    {
+      "id": "nimbus-attrs",
+      "type": "text",
+      "x": 610, "y": 198, "width": 320, "height": 175,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "seed": 2004, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "text": "- añoFabricacion: Number\n- porcentajeSalud: Number\n──────────────────────────\n+ antiguedad(): Number\n+ velocidad(): Number\n+ porcentajeSalud(): Number",
+      "fontSize": 13, "fontFamily": 3,
+      "textAlign": "left", "verticalAlign": "top", "baseline": 13, "containerId": null,
+      "originalText": "- añoFabricacion: Number\n- porcentajeSalud: Number\n──────────────────────────\n+ antiguedad(): Number\n+ velocidad(): Number\n+ porcentajeSalud(): Number",
+      "lineHeight": 1.3
+    },
+
+    {
+      "id": "saeta-box",
+      "type": "rectangle",
+      "x": 600, "y": 430, "width": 340, "height": 120,
+      "angle": 0, "strokeColor": "#e8590c", "backgroundColor": "#ffe8cc",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "seed": 3001, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "saeta-header",
+      "type": "rectangle",
+      "x": 600, "y": 430, "width": 340, "height": 40,
+      "angle": 0, "strokeColor": "#e8590c", "backgroundColor": "#e8590c",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "seed": 3002, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "saeta-title",
+      "type": "text",
+      "x": 608, "y": 438, "width": 324, "height": 25,
+      "angle": 0, "strokeColor": "#ffffff", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "seed": 3003, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "text": "saetaDeFuego", "fontSize": 18, "fontFamily": 1,
+      "textAlign": "center", "verticalAlign": "middle", "baseline": 18, "containerId": null,
+      "originalText": "saetaDeFuego", "lineHeight": 1.25
+    },
+    {
+      "id": "saeta-attrs",
+      "type": "text",
+      "x": 610, "y": 478, "width": 320, "height": 65,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "seed": 3004, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "text": "──────────────────────────\n+ velocidad(): Number",
+      "fontSize": 13, "fontFamily": 3,
+      "textAlign": "left", "verticalAlign": "top", "baseline": 13, "containerId": null,
+      "originalText": "──────────────────────────\n+ velocidad(): Number",
+      "lineHeight": 1.3
+    },
+
+    {
+      "id": "arrow-jugador-nimbus",
+      "type": "arrow",
+      "x": 440, "y": 290, "width": 160, "height": -20,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "dashed",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 2}, "seed": 8001, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "points": [[0,0],[160,-20]], "lastCommittedPoint": null,
+      "startBinding": null, "endBinding": null, "startArrowhead": null, "endArrowhead": "arrow"
+    },
+    {
+      "id": "arrow-jugador-saeta",
+      "type": "arrow",
+      "x": 440, "y": 340, "width": 160, "height": 140,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "dashed",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 2}, "seed": 8002, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "points": [[0,0],[160,140]], "lastCommittedPoint": null,
+      "startBinding": null, "endBinding": null, "startArrowhead": null, "endArrowhead": "arrow"
+    },
+    {
+      "id": "assoc-label-escoba",
+      "type": "text",
+      "x": 460, "y": 308, "width": 80, "height": 20,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "seed": 8003, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "text": "«escoba»", "fontSize": 12, "fontFamily": 1,
+      "textAlign": "center", "verticalAlign": "middle", "baseline": 12, "containerId": null,
+      "originalText": "«escoba»", "lineHeight": 1.25
+    },
+
+    {
+      "id": "polimorfismo-note",
+      "type": "text",
+      "x": 600, "y": 400, "width": 340, "height": 20,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 0, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "seed": 9001, "version": 1, "versionNonce": 1,
+      "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false,
+      "text": "Polimorfismo: ambas entienden velocidad()", "fontSize": 11, "fontFamily": 1,
+      "textAlign": "center", "verticalAlign": "middle", "baseline": 11, "containerId": null,
+      "originalText": "Polimorfismo: ambas entienden velocidad()", "lineHeight": 1.25
+    }
+
+  ],
+  "appState": {
+    "gridSize": null,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}
